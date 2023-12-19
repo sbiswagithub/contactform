@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Contact form</title>
+        <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+            integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+            crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+            rel="stylesheet"
+            integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+            crossorigin="anonymous">
+
+    </head>
+
+    <body>
+        <!-- Contact Form -->
+        <div class="content">
+            <div class="heading">CONTACT US</div>
+            <h1>Do you have any questions?</h1>
+            <p>Real innovations and a positive customer experience are the heart of successful<br>
+                communication. No fake
+                products and services.</p>
+        </div>
+        <div class="main">
+            <div class="container">
+                <div class="img-box">
+                    <img
+                        src="https://img.freepik.com/free-vector/my-answer-concept-illustration_114360-4444.jpg?w=740&t=st=1700379838~exp=1700380438~hmac=ab160862198fe957a6395bc79858cfc99654dd3788a069a399e0f1640e1aab8f"
+                        alt>
+                </div>
+                <form onsubmit="sendemail(); reset(); return false;">
+                    <div class="row">
+                        <div class="name">
+                            <label for>Name</label><br>
+                            <div class="icon">
+                                <input type="text" name="name" id="name"
+                                    placeholder="Enter your Name" required>
+                                <i class="fa-solid fa-user" id="icon"></i>
+                            </div>
+                        </div>
+                        <div class="email">
+                            <label for>Email</label><br>
+                            <div class="icon">
+                                <input type="email" name="email" id="email"
+                                    placeholder="Enter your Email Id" required>
+                                <i class="fa-solid fa-envelope" id="icon"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="phone">
+                            <label for>Phone</label><br>
+                            <div class="icon">
+                                <input type="text" name="phone" id="phone"
+                                    placeholder="Enter your Phone no." required>
+                                <i class="fa-solid fa-mobile-screen" id="icon"></i>
+                            </div>
+                        </div>
+                        <div class="subject">
+                            <label for>Subject</label><br>
+                            <div class="icon">
+                                <input type="text" name="text" id="subject"
+                                    placeholder="Enter your Subject" required>
+                                <i class="fa-solid fa-book" id="icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="msg">
+                        <label for="message">Message</label><br>
+                        <textarea name="message" id="message"
+                            placeholder="Enter your Message here..." cols="30" rows="20"
+                            required></textarea>
+
+                    </div>
+                    <!-- button -->
+                    <button type="submit" id="sendbtn">Send Message</button>
+
+                </form>
+                <script src="https://smtpjs.com/v3/smtp.js">
+            </script>
+
+                <script>
+
+                function sendemail() {
+                    let email = document.getElementById('email').value;
+                    let name = document.getElementById('name').value;
+                    let phone = document.getElementById('phone').value;
+                    let subject = document.getElementById('subject').value;
+
+
+                    body_msg = "name :" + name + "<br> email :" + email + "<br> phone :" + phone;
+                     console.log(email)
+                    Email.send({
+                        SecureToken: "cf9197d9-9aab-4518-9272-2396007649d6",
+                        To: 'bisajitsahoo2000@gmail.com',
+                        From: "bisajitsahoo2000@gmail.com",
+                        Subject: subject,
+                        Body: body_msg
+                    }).then(
+                        message => alert("Your Message Received")
+                    );
+
+                    Thankyou(email);
+                    return true;
+
+                    
+                    console.log(email)
+                    document.getElementById("sendbtn").innerHTML = "done"
+
+                    setTimeout(function () {
+
+                        document.getElementById("sendbtn").innerHTML = "Send Message";
+                    }, 5000);
+                };
+
+                function Thankyou(email) {
+                    console.log(email)
+                    
+                    Email.send({
+                        SecureToken:"cf9197d9-9aab-4518-9272-2396007649d6 ",
+                        To: email,
+                        From: "bisajitsahoo2000@gmail.com",
+                        Subject: "Contact Form",
+                        Body: "Thankyou"
+                    }).then(
+                        message => {
+                            alert("Thankyou For Contact Us");
+
+                        }
+                    );
+                    console.log(email)
+                }
+
+
+
+
+
+
+
+
+
+
+
+            </script>
+
+            </textarea>
+        </body>
+
+    </html>
